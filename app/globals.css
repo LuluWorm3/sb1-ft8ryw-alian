@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 220 20% 10%;
+  --foreground: 0 0% 98%;
+  --primary: 210 100% 50%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 30 100% 50%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 220 20% 20%;
+  --muted-foreground: 220 20% 60%;
+  --accent: 180 100% 50%;
+  --accent-foreground: 0 0% 98%;
+  --glow-blue: 210 100% 50%;
+  --glow-orange: 30 100% 50%;
+  --glow-teal: 180 100% 50%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.glow-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, theme('colors.glow.blue'), transparent);
+  animation: glow-line-animation 3s linear infinite;
+}
+
+@keyframes glow-line-animation {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Improve accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .glow-line::before {
+    animation: none;
+  }
+}
+
+/* Improve responsiveness */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+}
+
+/* Payload-inspired styles */
+.payload-inspired-bg {
+  background: linear-gradient(to bottom right, #1a1a1a, #2a2a2a);
+}
+
+.payload-inspired-text {
+  background: linear-gradient(to right, #3490dc, #6574cd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.payload-inspired-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.payload-inspired-glow {
+  box-shadow: 0 0 10px rgba(52, 144, 220, 0.5);
+}
